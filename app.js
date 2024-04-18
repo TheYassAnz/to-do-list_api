@@ -20,6 +20,11 @@ mongoose.connect(`mongodb+srv://${p.USER}:${p.PASSWORD}@${p.CLUSTER}/?retryWrite
 // create an express app
 const app = express();
 
+// Middleware which intercept JSON data
+app.use(express.json());
+
+const taskRoutes = require('./routes/task')
+
 // cors middleware
 app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
@@ -32,6 +37,8 @@ app.use((req, res, next) => {
 app.get('/api', (req, res) => {
     res.json({ message: 'Hello World!' });
 })
+
+app.use('/api/tasks', taskRoutes);
 
 // export the express app
 module.exports = app;
