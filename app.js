@@ -24,6 +24,7 @@ const app = express();
 app.use(express.json());
 
 const taskRoutes = require('./routes/task')
+const userRoutes = require('./routes/user');
 
 // cors middleware
 app.use((req, res, next) => {
@@ -39,6 +40,7 @@ app.get('/api', (req, res) => {
 })
 
 app.use('/api/tasks', taskRoutes);
+app.use('/api/auth', userRoutes);
 
 // export the express app
 module.exports = app;
