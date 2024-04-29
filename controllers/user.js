@@ -45,3 +45,16 @@ exports.login = (req, res) => {
         })
         .catch((err) => res.status(400).json({ err }));
 }
+
+exports.verify = (req, res) => {
+    try {
+        // Get the token from the headers
+        const token = req.headers.authorization.split(' ')[1];
+        // Decode the token
+        const decodedToken = jwt.verify(token, 'RANDOM_TOKEN_SECRET');
+        // Get the user ID from the token
+        res.status(200).json({ userId: decodedToken.userId });
+    } catch (error) {
+        res.status(401).json({ error });
+    }
+}
