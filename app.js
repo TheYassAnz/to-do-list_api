@@ -9,7 +9,7 @@ require('dotenv').config();
 const p = process.env
 
 // connect to the database
-mongoose.connect(`mongodb+srv://${p.USER}:${p.PASSWORD}@${p.CLUSTER}/?retryWrites=true&w=majority&appName=${p.DATABASE}`,
+mongoose.connect(`${p.MONGODB_URL}`,
     {
         useNewUrlParser: true,
         useUnifiedTopology: true
